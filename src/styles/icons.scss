@@ -1,0 +1,90 @@
+@mixin new {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	background-color: #565656;
+  background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.icon {
+	&-reply {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/reply.svg');
+		mask-image: url('../assets/icons/reply.svg');
+    height: 22px;
+    width: 22px;
+	}
+
+	&-question {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/question.svg');
+		mask-image: url('../assets/icons/question.svg');
+    height: 22px;
+    width: 22px;
+	}
+
+	&-document {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/document.svg');
+		mask-image: url('../assets/icons/document.svg');
+    height: 22px;
+    width: 20px;
+	}
+
+	&-list {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/list.svg');
+		mask-image: url('../assets/icons/list.svg');
+    height: 22px;
+    width: 22px;
+	}
+
+	&-listAdd {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/listAdd.svg');
+		mask-image: url('../assets/icons/listAdd.svg');
+    height: 20px;
+    width: 22px;
+	}
+
+	&-backspace {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/backspace.svg');
+		mask-image: url('../assets/icons/backspace.svg');
+    height: 21px;
+    width: 18px;
+	}
+
+	&-send {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/send.svg');
+		mask-image: url('../assets/icons/send.svg');
+    height: 21px;
+    width: 22px;
+	}
+
+	&-done {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/done.svg');
+		mask-image: url('../assets/icons/done.svg');
+    height: 19px;
+    width: 21px;
+	}
+
+	&-expandMore {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/expandMore.svg');
+		mask-image: url('../assets/icons/expandMore.svg');
+    height: 16px;
+    width: 18px;
+	}
+
+	&-expandLess {
+		@include new();
+		-webkit-mask-image: url('../assets/icons/expandLess.svg');
+		mask-image: url('../assets/icons/expandLess.svg');
+    height: 16px;
+    width: 18px;
+	}
+}

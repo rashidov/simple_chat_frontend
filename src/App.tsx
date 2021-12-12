@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Routes from './routes'
+import socket from './socket'
+import {reducer} from './reducer'
+import { Context } from './context'
+import { useNavigate } from 'react-router-dom'
+import { SET_MESSAGES, SET_NEW_MESSAGE, SET_USERS } from './types'
+import './styles/main.scss'
 
-function App() {
+const initState = {
+  isAuth: false,
+  users: [],
+  userName: '',
+  roomId: '',
+  messages: []
+}
+
+const App: React.FC = () => {
+  const navigate = useNavigate()
+  const [state, dispatch] = React.useReducer(reducer, initState)
+
+  React.useEffect(() => {
+    navigate('/')
+
+    socket.on('connect', () => {
+      socket.on('ROOM:JOINED', data => dispatch({type: SET_USERS, payload: data}))
+      socket.on('ROOM:NEW_MESSAGE', ({userName, text}) => dispatch({type: SET_NEW_MESSAGE, payload: {from: userName, text}}))
+      socket.on('ROOM:MESSAGES', messages => dispatch({type: SET_MESSAGES, payload: messages}))
+    })
+  }, [])
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Context.Provider value={{state, dispatch}}>
+      <div className="App">
+        <Routes />
+      </div>
+    </Context.Provider>
+  )
 }
 
 export default App;
