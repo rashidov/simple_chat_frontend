@@ -26,7 +26,7 @@
     }
 
     &-content {
-      width: 78%;
+      width: 80%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -81,5 +81,17 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 1440px) {
+  .messanger {
+    width: 80%;
+  }
+}
+
+@media (max-width: 800px) {
+  .messanger {
+    width: 90%;
   }
 }

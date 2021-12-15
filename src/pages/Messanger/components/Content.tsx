@@ -25,7 +25,7 @@ const Content: React.FC<ContentProps> = ({userName, roomId, messages, addStoreMs
   React.useEffect(() => { 
     if (messages.length === 0) return;
     const newMsgs: any = []
-    messages.forEach((msg: any) => newMsgs.push({from: msg.userName, text: msg.text}))
+    messages.forEach((msg: any) => newMsgs.push({from: msg.from || msg.userName, text: msg.text}))
     setMessagesD(newMsgs)
   }, [messages])
 
@@ -44,6 +44,7 @@ const Content: React.FC<ContentProps> = ({userName, roomId, messages, addStoreMs
 }
 
 export default Content
+
 
 
 interface FormProps {
@@ -75,8 +76,8 @@ interface MessagesProps {
 
 const Messages: React.FC<MessagesProps> = ({messages}) => (
   <div className="messages">
-    {messages.map(msg => (
-      <MessageComponent key={msg.text} text={msg.text} from={msg.from} />
+    {messages.map((msg, index) => (
+      <MessageComponent key={`${index}`} text={msg.text} from={msg.from} />
     ))}
   </div>
 )
